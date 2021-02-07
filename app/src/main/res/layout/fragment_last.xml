@@ -15,7 +15,7 @@
         app:layout_constraintBottom_toTopOf="@id/nameView"
         android:layout_marginStart="48dp"
         android:layout_marginEnd="48dp"
-        android:src="@drawable/ic_credit_card_svgrepo_com"
+        android:src="@drawable/ic_credit_card_back"
         android:layout_marginTop="64dp"/>
 
     <TextView
