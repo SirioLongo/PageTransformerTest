@@ -26,9 +26,16 @@ class MainPageTransformer : ViewPager2.PageTransformer {
         when {
             abs(position) <= 1 -> {
                 val pageTranslation = page.width * position
-                val positionFactor = sign(position) * sqrt(abs(position))
-                val scaleFactorX = 1 - 0.9f * abs(positionFactor)
-                val scaleFactorY = 1 - 0.5f * abs(positionFactor)
+                // The common scale factor will decrease as the page approaches the center of the screen
+                // like a square root function(from both directions)
+                val scaleFactor = sign(position) * sqrt(abs(position))
+
+                // Each scale factor will increase as the page approaches the center (the card will become
+                // bigger) like a square root function
+                val scaleFactorX = 1 - 0.9f * abs(scaleFactor)
+                val scaleFactorY = 1 - 0.5f * abs(scaleFactor)
+
+                // Each card will be at 0 degrees in the center, at 180 or -180 when at the side
                 val rotation = 180 * position
 
                 counterBalancePageSlide(pageTranslation)
